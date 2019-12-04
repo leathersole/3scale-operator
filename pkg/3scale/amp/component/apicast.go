@@ -1,6 +1,8 @@
 package component
 
 import (
+	"fmt"
+
 	"github.com/3scale/3scale-operator/pkg/common"
 
 	appsv1 "github.com/openshift/api/apps/v1"
@@ -147,7 +149,7 @@ func (apicast *Apicast) StagingDeploymentConfig() *appsv1.DeploymentConfig {
 						},
 						From: v1.ObjectReference{
 							Kind: "ImageStreamTag",
-							Name: "amp-apicast:latest",
+							Name: fmt.Sprintf("amp-apicast:%s", apicast.Options.stagingImageTag),
 						},
 					},
 				},
@@ -261,7 +263,7 @@ func (apicast *Apicast) ProductionDeploymentConfig() *appsv1.DeploymentConfig {
 						},
 						From: v1.ObjectReference{
 							Kind: "ImageStreamTag",
-							Name: "amp-apicast:latest",
+							Name: fmt.Sprintf("amp-apicast:%s", apicast.Options.productionImageTag),
 						},
 					},
 				},
