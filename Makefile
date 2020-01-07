@@ -73,16 +73,16 @@ $(PROJECT_PATH)/_output/unit.cov:
 
 ## unit: Run unit tests in pkg directory
 .PHONY: unit
-unit: $(PROJECT_PATH)/_output/unit.cov 
+unit: $(PROJECT_PATH)/_output/unit.cov
 
 ## coverage_analysis: Analyze coverage via a browse
 .PHONY: coverage_analysis
-coverage_analysis: $(PROJECT_PATH)/_output/unit.cov 
+coverage_analysis: $(PROJECT_PATH)/_output/unit.cov
 	go tool cover -html="$(PROJECT_PATH)/_output/unit.cov"
 
 ## coverage_total_report: Simple coverage report
 .PHONY: coverage_total_report
-coverage_total_report: $(PROJECT_PATH)/_output/unit.cov 
+coverage_total_report: $(PROJECT_PATH)/_output/unit.cov
 	@go tool cover -func=$(PROJECT_PATH)/_output/unit.cov | grep total | awk '{print $$3}'
 
 ## test-crds: Run CRD unittests
@@ -94,7 +94,7 @@ verify-manifest:
 ifndef OPERATORCOURIER
 	$(error "operator-courier is not available please install pip3 install operator-courier")
 endif
-	cd $(PROJECT_PATH)/deploy/olm-catalog && operator-courier verify --ui_validate_io 3scale-operator-master/
+	cd $(PROJECT_PATH)/deploy/olm-catalog && operator-courier verify --ui_validate_io 3scale-operator/
 
 ## licenses.xml: Generate licenses.xml file
 licenses.xml:
