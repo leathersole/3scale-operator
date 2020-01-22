@@ -227,7 +227,7 @@ func (r *SystemReconciler) Reconcile() (reconcile.Result, error) {
 func (r *SystemReconciler) reconcileS3Storage() error {
 	// Nothing for reconcile.
 	// Check all required fields exist
-	awsCredentialsSecretName := r.apiManager.Spec.System.FileStorageSpec.S3.AWSCredentials.Name
+	awsCredentialsSecretName := r.apiManager.Spec.System.FileStorageSpec.S3.ConfigurationSecretRef.Name
 	if awsCredentialsSecretName == "" {
 		return fmt.Errorf("no aws credentials provided")
 	}
